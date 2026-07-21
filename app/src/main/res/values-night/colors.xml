@@ -10,4 +10,5 @@
     <color name="text_muted">#484F58</color>
     <color name="border">#30363D</color>
     <color name="ic_launcher_background">#0D1117</color>
+    <color name="bg_terminal">#010409</color>
 </resources>
