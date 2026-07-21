@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnWireguard: TextView
     private lateinit var btnGool: TextView
     private lateinit var tvVersion: TextView
-    private lateinit var mainRoot: android.widget.LinearLayout
 
     private var connected = false
     private var connecting = false
@@ -72,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         btnWireguard = findViewById(R.id.btnWireguard)
         btnGool = findViewById(R.id.btnGool)
         tvVersion = findViewById(R.id.tvVersion)
-        mainRoot = findViewById(R.id.mainRoot)
 
         tvVersion.text = "v1.3 • core v1.3.0"
 
@@ -208,7 +206,6 @@ class MainActivity : AppCompatActivity() {
         // Pulsing animation
         startPulseAnimation()
         // Background fade
-        mainRoot.animate().alpha(0.95f).setDuration(300).start()
     }
 
     private fun startPulseAnimation() {
@@ -232,7 +229,6 @@ class MainActivity : AppCompatActivity() {
         pulseAnimator = null
         btnIcon.alpha = 1f
         btnCircle.animate().scaleX(1f).scaleY(1f).setDuration(300).start()
-        mainRoot.animate().alpha(1f).setDuration(300).start()
     }
 
     private fun updateUI() {
