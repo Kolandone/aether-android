@@ -37,14 +37,17 @@
         android:gravity="center" android:layout_marginBottom="24dp"/>
 
     <!-- Connect Button -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:layout_marginBottom="24dp">
     <FrameLayout android:id="@+id/btnCircle" android:layout_width="120dp" android:layout_height="120dp"
-        android:layout_gravity="center" android:layout_marginBottom="24dp"
+        android:layout_marginBottom="0dp"
         android:clickable="true" android:focusable="true">
         <View android:id="@+id/btnBg" android:layout_width="120dp" android:layout_height="120dp"
             android:background="@drawable/circle_disconnected"/>
         <ImageView android:id="@+id/btnIcon" android:layout_width="48dp" android:layout_height="48dp"
             android:layout_gravity="center" android:src="@drawable/ic_power"/>
     </FrameLayout>
+
+    </LinearLayout>
 
     <!-- Protocol Selector -->
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
