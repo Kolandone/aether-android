@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core palette -->
+    <color name="green">#00ff41</color>
+    <color name="red">#f85149</color>
+    <color name="yellow">#e3b341</color>
+    <color name="accent">#58A6FF</color>
+
+    <!-- Backgrounds -->
+    <color name="bg_primary">#0D1117</color>
+    <color name="bg_secondary">#161B22</color>
+    <color name="bg_terminal">#010409</color>
+
+    <!-- Text -->
+    <color name="text_primary">#E6EDF3</color>
+    <color name="text_secondary">#8B949E</color>
+    <color name="text_muted">#484F58</color>
+
+    <!-- Borders -->
+    <color name="border">#30363D</color>
+    <color name="ic_launcher_background">#0D1117</color>
+</resources>

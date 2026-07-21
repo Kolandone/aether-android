@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpinnerTheme" parent="@android:style/Widget.Spinner">
+        <item name="android:textColor">#E6EDF3</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:background">@drawable/spinner_bg</item>
+        <item name="android:popupBackground">#1C2333</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+</resources>

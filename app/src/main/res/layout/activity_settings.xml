@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary">
+
+    <!-- Header -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingHorizontal="16dp" android:background="@color/bg_secondary">
+        <TextView android:id="@+id/btnBack" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="← Back" android:textColor="@color/accent" android:textSize="14sp"
+            android:clickable="true" android:focusable="true" android:padding="8dp"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="Settings" android:textColor="@color/text_primary" android:textSize="16sp"
+            android:textStyle="bold" android:gravity="center"/>
+        <View android:layout_width="56dp" android:layout_height="0dp"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:padding="16dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Section: Common -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="COMMON" android:textColor="@color/accent" android:textSize="11sp"
+                android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp"/>
+
+            <!-- Scan Mode -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Scan Mode" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <Spinner android:id="@+id/spinnerScan" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/spinner_bg" android:layout_marginBottom="12dp"/>
+
+            <!-- IP Version -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="IP Version" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <Spinner android:id="@+id/spinnerIp" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/spinner_bg" android:layout_marginBottom="12dp"/>
+
+            <!-- Noize Profile -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Noise Profile" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <Spinner android:id="@+id/spinnerNoize" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/spinner_bg" android:layout_marginBottom="12dp"/>
+
+            <!-- Bind Address -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Bind Address" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <EditText android:id="@+id/etBind" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                android:hint="127.0.0.1:1819" android:textColorHint="@color/text_muted"
+                android:layout_marginBottom="12dp" android:inputType="text"/>
+
+            <!-- Peer -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Peer" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <EditText android:id="@+id/etPeer" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                android:hint="optional peer address" android:textColorHint="@color/text_muted"
+                android:layout_marginBottom="12dp" android:inputType="text"/>
+
+            <!-- TLS Groups -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="TLS Groups" android:textColor="@color/text_secondary" android:textSize="12sp"
+                android:layout_marginBottom="4dp"/>
+            <EditText android:id="@+id/etTlsGroups" android:layout_width="match_parent" android:layout_height="42dp"
+                android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                android:hint="optional" android:textColorHint="@color/text_muted"
+                android:layout_marginBottom="12dp" android:inputType="text"/>
+
+            <!-- Quick Reconnect -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Quick Reconnect" android:textColor="@color/text_primary" android:textSize="13sp"/>
+                <Switch android:id="@+id/switchQuickReconnect" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:thumbTint="@color/accent"/>
+            </LinearLayout>
+
+            <!-- No Data Check -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="No Data Check" android:textColor="@color/text_primary" android:textSize="13sp"/>
+                <Switch android:id="@+id/switchNoDataCheck" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:thumbTint="@color/accent"/>
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/border" android:layout_marginBottom="16dp"/>
+
+            <!-- Section: MASQUE Options -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="MASQUE OPTIONS" android:textColor="@color/accent" android:textSize="11sp"
+                android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp"/>
+
+            <LinearLayout android:id="@+id/layoutMasque" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+
+                <!-- H2 Switch -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="Use H2 Transport" android:textColor="@color/text_primary" android:textSize="13sp"/>
+                    <Switch android:id="@+id/switchH2" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:thumbTint="@color/accent"/>
+                </LinearLayout>
+
+                <!-- H2 Peer -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="H2 Peer" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etH2Peer" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="optional" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="text"/>
+
+                <!-- Fragment Switch -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="Fragment" android:textColor="@color/text_primary" android:textSize="13sp"/>
+                    <Switch android:id="@+id/switchFragment" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:thumbTint="@color/accent"
+                        android:enabled="false"/>
+                </LinearLayout>
+
+                <!-- Fragment Size -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Fragment Size (e.g. 16-32)" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etFragmentSize" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="16-32" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="text" android:visibility="gone"/>
+
+                <!-- Fragment Delay -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Fragment Delay (e.g. 2-10)" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etFragmentDelay" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="2-10" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="text" android:visibility="gone"/>
+
+                <!-- ECH -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="ECH" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner android:id="@+id/spinnerEch" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/spinner_bg" android:layout_marginBottom="12dp"/>
+
+                <!-- Validate Secs -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Validate Seconds" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etValidateSecs" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="10" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="number"/>
+
+                <!-- Reconnect Secs -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Reconnect Seconds" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etReconnectSecs" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="2" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="16dp" android:inputType="number"/>
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/border" android:layout_marginBottom="16dp"/>
+
+            <!-- Section: WireGuard / Gool Options -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="WIREGUARD / GOOL OPTIONS" android:textColor="@color/accent" android:textSize="11sp"
+                android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="12dp"/>
+
+            <LinearLayout android:id="@+id/layoutWg" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+
+                <!-- Keepalive -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Keepalive (seconds)" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etKeepalive" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="5" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="number"/>
+
+                <!-- WG Reconnect Secs -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="WG Reconnect (sec)" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etWgReconnectSecs" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="2" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="number"/>
+
+                <!-- WG Peer -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="WG Peer" android:textColor="@color/text_secondary" android:textSize="12sp"
+                    android:layout_marginBottom="4dp"/>
+                <EditText android:id="@+id/etWgPeer" android:layout_width="match_parent" android:layout_height="42dp"
+                    android:background="@drawable/input_bg" android:textColor="@color/text_primary"
+                    android:textSize="13sp" android:paddingHorizontal="12dp" android:singleLine="true"
+                    android:hint="optional" android:textColorHint="@color/text_muted"
+                    android:layout_marginBottom="12dp" android:inputType="text"/>
+
+                <!-- No Profile Retry -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:text="No Profile Retry" android:textColor="@color/text_primary" android:textSize="13sp"/>
+                    <Switch android:id="@+id/switchNoProfileRetry" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:thumbTint="@color/accent"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Save Button -->
+            <Button android:id="@+id/btnSave" android:layout_width="match_parent" android:layout_height="48dp"
+                android:text="Save Settings" android:textColor="@color/text_primary"
+                android:background="@drawable/btn_primary" android:textSize="14sp"
+                android:textStyle="bold" android:layout_marginTop="16dp" android:layout_marginBottom="32dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

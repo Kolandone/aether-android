@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_primary">
+
+    <!-- Header -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingHorizontal="16dp" android:background="@color/bg_secondary">
+        <TextView android:id="@+id/btnBack" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="← Back" android:textColor="@color/accent" android:textSize="14sp"
+            android:clickable="true" android:focusable="true" android:padding="8dp"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="About" android:textColor="@color/text_primary" android:textSize="16sp"
+            android:textStyle="bold" android:gravity="center"/>
+        <View android:layout_width="56dp" android:layout_height="0dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:gravity="center_horizontal"
+        android:padding="32dp">
+
+        <!-- Logo -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="⚡" android:textSize="64sp" android:layout_marginBottom="16dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Aether" android:textColor="@color/text_primary" android:textSize="28sp"
+            android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="App v1.3 • Core v1.3.0" android:textColor="@color/text_secondary" android:textSize="13sp"
+            android:layout_marginBottom="24dp"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="@color/border" android:layout_marginBottom="24dp"/>
+
+        <!-- Features -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Android client for Aether" android:textColor="@color/text_primary"
+            android:textSize="14sp" android:gravity="center" android:layout_marginBottom="8dp"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Supports MASQUE, WireGuard, and Gool protocols" android:textColor="@color/text_secondary"
+            android:textSize="12sp" android:gravity="center" android:layout_marginBottom="24dp"/>
+
+        <!-- Links -->
+        <TextView android:id="@+id/tvTelegram" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="✈ Telegram" android:textColor="@color/accent" android:textSize="14sp"
+            android:clickable="true" android:focusable="true" android:padding="12dp"/>
+        <TextView android:id="@+id/tvGithub" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="⚙ GitHub" android:textColor="@color/accent" android:textSize="14sp"
+            android:clickable="true" android:focusable="true" android:padding="12dp"/>
+
+        <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Made with ❤️ by koland" android:textColor="@color/text_muted" android:textSize="11sp"
+            android:layout_marginTop="24dp"/>
+    </LinearLayout>
+</LinearLayout>
