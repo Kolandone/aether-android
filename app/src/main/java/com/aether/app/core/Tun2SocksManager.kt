@@ -93,26 +93,17 @@ class Tun2SocksManager(private val context: Context) {
     }
 
     /**
-     * Fallback: Use a simple Kotlin-based TUN-to-SOCKS bridge if tun2socks binary is not available.
-     * This is a basic implementation that reads packets from TUN and forwards to SOCKS.
+     * Fallback: when tun2socks binary is missing, return false so VPN service knows.
+     * A real TUN→SOCKS bridge requires either the tun2socks binary or JNI integration.
      */
     private fun startFallbackTunBridge(
         tunFd: ParcelFileDescriptor,
         socksHost: String,
         socksPort: Int
     ): Boolean {
-        Log.i(TAG, "Using fallback TUN bridge (no tun2socks binary)")
-
-        return try {
-            // Use the Java Socket API to create a SOCKS5 connection
-            // and bridge it with the TUN fd
-            val bridge = TunBridge(tunFd, socksHost, socksPort)
-            bridge.start()
-            true
-        } catch (e: Exception) {
-            Log.e(TAG, "Fallback TUN bridge failed", e)
-            false
-        }
+        Log.e(TAG, "tun2socks binary not found — VPN mode requires tun2socks")
+        Log.e(TAG, "Place libtun2socks.so in jniLibs/${android.os.Build.SUPPORTED_ABIS[0]}/")
+        return false
     }
 
     private fun sendFd(tunFd: ParcelFileDescriptor) {
@@ -159,61 +150,5 @@ class Tun2SocksManager(private val context: Context) {
         process?.exitValue(); false
     } catch (_: IllegalThreadStateException) {
         true
-    }
-}
-
-/**
- * Simple fallback TUN bridge using Java sockets.
- * Reads raw IP packets from TUN and forwards them through a SOCKS5 proxy.
- *
- * This is a minimal implementation for when tun2socks binary is not available.
- */
-private class TunBridge(
-    private val tunFd: ParcelFileDescriptor,
-    private val socksHost: String,
-    private val socksPort: Int
-) : Thread("TunBridge") {
-
-    companion object {
-        private const val TAG = "TunBridge"
-        private const val BUFFER_SIZE = 65535
-    }
-
-    @Volatile
-    private var running = true
-
-    override fun run() {
-        Log.i(TAG, "TUN bridge started -> SOCKS5 $socksHost:$socksPort")
-
-        // Note: This is a placeholder. A real implementation would need to:
-        // 1. Read raw IP packets from the TUN fd
-        // 2. Parse IP headers to extract TCP/UDP connections
-        // 3. Establish SOCKS5 connections for each flow
-        // 4. Forward packets bidirectionally
-        //
-        // For production use, the tun2socks binary is strongly recommended.
-        // This fallback exists only for development/testing purposes.
-
-        try {
-            val inputStream = ParcelFileDescriptor.AutoCloseInputStream(tunFd)
-            val buffer = ByteArray(BUFFER_SIZE)
-
-            while (running) {
-                val length = inputStream.read(buffer)
-                if (length <= 0) break
-
-                // In a real implementation, we would parse the IP packet here
-                // and route it through SOCKS5. For now, just drain the TUN.
-                Log.v(TAG, "Read $length bytes from TUN (dropped - no SOCKS routing)")
-            }
-        } catch (e: IOException) {
-            if (running) Log.e(TAG, "TUN bridge error: ${e.message}")
-        } finally {
-            Log.i(TAG, "TUN bridge stopped")
-        }
-    }
-
-    fun shutdown() {
-        running = false
     }
 }

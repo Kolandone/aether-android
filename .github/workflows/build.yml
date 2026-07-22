@@ -46,18 +46,27 @@ jobs:
       - name: Download tun2socks for VPN mode
         run: |
           set -e
-          TUN_BASE="https://raw.githubusercontent.com/GFW-knocker/MahsaNG/main/V2rayNG/app/libs"
-
+          # Download tun2socks from MahsaNG repo using GitHub API (not raw)
           for ABI in arm64-v8a armeabi-v7a x86_64; do
             echo "Downloading tun2socks for ${ABI}..."
-            curl -sL "${TUN_BASE}/${ABI}/libtun2socks.so" -o "app/src/main/jniLibs/${ABI}/libtun2socks.so"
-            chmod 755 "app/src/main/jniLibs/${ABI}/libtun2socks.so"
-            SIZE=$(wc -c < "app/src/main/jniLibs/${ABI}/libtun2socks.so")
-            echo "  ${ABI}: ${SIZE} bytes"
-            # Validate it's a real binary (not HTML error page)
-            if [ "$SIZE" -lt 1000 ]; then
-              echo "  WARNING: tun2socks for ${ABI} looks too small, removing"
-              rm -f "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+            # Use GitHub API to get the file content
+            curl -sL -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3.raw" \
+              "https://api.github.com/repos/GFW-knocker/MahsaNG/contents/V2rayNG/app/libs/${ABI}/libtun2socks.so" \
+              -o "app/src/main/jniLibs/${ABI}/libtun2socks.so" || true
+            
+            if [ -f "app/src/main/jniLibs/${ABI}/libtun2socks.so" ]; then
+              chmod 755 "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+              SIZE=$(wc -c < "app/src/main/jniLibs/${ABI}/libtun2socks.so")
+              echo "  ${ABI}: ${SIZE} bytes"
+              # Validate it's a real ELF binary (starts with \x7fELF)
+              HEADER=$(xxd -l 4 -p "app/src/main/jniLibs/${ABI}/libtun2socks.so" 2>/dev/null || echo "bad")
+              if [ "$HEADER" != "7f454c46" ]; then
+                echo "  WARNING: Not a valid ELF binary, removing"
+                rm -f "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+              fi
+            else
+              echo "  FAILED to download"
             fi
           done
 

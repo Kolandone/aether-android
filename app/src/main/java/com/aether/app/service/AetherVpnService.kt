@@ -153,6 +153,7 @@ class AetherVpnService : VpnService() {
         aetherManager = AetherManager(this).apply {
             setLogCallback { line ->
                 ConnectionLog.record(line)
+                LogsActivity.appendLog(line)
                 Log.d(TAG, "aether: $line")
             }
             setStatusCallback { running ->
