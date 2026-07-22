@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     private var connected = false
     private var connecting = false
+    private var waitingForVpnPermission = false
     private var selectedProtocol = AetherConfig.Protocol.MASQUE
     private var selectedMode = AetherConfig.ConnectionMode.VPN
     private var pulseAnimator: ObjectAnimator? = null
@@ -105,7 +106,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (AetherVpnService.isRunning) {
+        // Don't auto-detect state when returning from VPN permission dialog
+        if (waitingForVpnPermission) {
+            waitingForVpnPermission = false
+            // Keep current state (connecting), let onActivityResult handle it
+            updateUI()
+            return
+        }
+        // If VPN service is running from a previous session, restore state
+        if (AetherVpnService.isRunning && !connected && !connecting) {
             connected = true
             connecting = false
         }
@@ -118,9 +127,11 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 startVpnService()
             } else {
-                // Permission denied → fall back to SOCKS
-                selectMode(AetherConfig.ConnectionMode.SOCKS)
-                connectSocks()
+                // Permission denied — reset to disconnected
+                connected = false
+                connecting = false
+                stopPulseAnimation()
+                updateUI()
             }
         }
     }
@@ -325,6 +336,7 @@ class MainActivity : AppCompatActivity() {
     private fun connectVpn() {
         val vpnIntent = VpnService.prepare(this)
         if (vpnIntent != null) {
+            waitingForVpnPermission = true
             startActivityForResult(vpnIntent, VPN_REQUEST)
         } else {
             startVpnService()
