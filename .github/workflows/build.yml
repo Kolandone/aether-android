@@ -33,15 +33,32 @@ jobs:
               armv7)   ABI="armeabi-v7a" ;;
               x86_64)  ABI="x86_64" ;;
             esac
-            echo "Downloading ${ARCH}..."
+            echo "Downloading Aether ${ARCH}..."
             curl -sL "${BASE_URL}/aether-android-${ARCH}.tar.gz" -o /tmp/aether.tar.gz
             mkdir -p /tmp/aether && tar xzf /tmp/aether.tar.gz -C /tmp/aether
-            # Find the main binary (not .sha256)
             BIN=$(find /tmp/aether -type f ! -name "*.sha256" | head -1)
             cp "$BIN" "app/src/main/jniLibs/${ABI}/libaether.so"
             chmod 755 "app/src/main/jniLibs/${ABI}/libaether.so"
             echo "  ${ABI}: $(wc -c < "app/src/main/jniLibs/${ABI}/libaether.so") bytes"
             rm -rf /tmp/aether /tmp/aether.tar.gz
+          done
+
+      - name: Download tun2socks for VPN mode
+        run: |
+          set -e
+          TUN_BASE="https://raw.githubusercontent.com/GFW-knocker/MahsaNG/main/V2rayNG/app/libs"
+
+          for ABI in arm64-v8a armeabi-v7a x86_64; do
+            echo "Downloading tun2socks for ${ABI}..."
+            curl -sL "${TUN_BASE}/${ABI}/libtun2socks.so" -o "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+            chmod 755 "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+            SIZE=$(wc -c < "app/src/main/jniLibs/${ABI}/libtun2socks.so")
+            echo "  ${ABI}: ${SIZE} bytes"
+            # Validate it's a real binary (not HTML error page)
+            if [ "$SIZE" -lt 1000 ]; then
+              echo "  WARNING: tun2socks for ${ABI} looks too small, removing"
+              rm -f "app/src/main/jniLibs/${ABI}/libtun2socks.so"
+            fi
           done
 
       - uses: gradle/actions/setup-gradle@v4

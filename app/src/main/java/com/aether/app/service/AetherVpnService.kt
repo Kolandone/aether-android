@@ -315,6 +315,15 @@ class AetherVpnService : VpnService() {
     private fun sendStatus(status: String, detail: String? = null) {
         Log.i(TAG, "status=$status${detail?.let { " detail=$it" } ?: ""}")
         ConnectionLog.record("${status.replaceFirstChar(Char::uppercase)}${detail?.let { ": $it" } ?: ""}")
+        updateNotification(
+            when (status) {
+                STATUS_CONNECTING -> "Connecting..."
+                STATUS_CONNECTED -> "Connected"
+                STATUS_FAILED -> detail ?: "Failed"
+                STATUS_DISCONNECTED -> "Disconnected"
+                else -> "Aether VPN"
+            }
+        )
         sendBroadcast(Intent(ACTION_STATUS)
             .setPackage(packageName)
             .putExtra(EXTRA_STATUS, status)

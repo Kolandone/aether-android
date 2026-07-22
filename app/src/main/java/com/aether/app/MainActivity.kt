@@ -355,7 +355,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startVpnService() {
         AetherVpnService.start(this)
-        KeepAliveService.start(this)
+        // KeepAliveService NOT started in VPN mode — AetherVpnService handles its own foreground notification
         startPulseAnimation()
     }
 
