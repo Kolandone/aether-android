@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // Permission denied → fall back to SOCKS
                 selectMode(AetherConfig.ConnectionMode.SOCKS)
-                startSocksMode()
+                connectSocks()
             }
         }
     }

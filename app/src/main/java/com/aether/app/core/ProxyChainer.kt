@@ -212,7 +212,7 @@ class ProxyChainer(private val context: Context) {
             val out = socket.outputStream
             val inp = socket.inputStream
             val hostBytes = host.toByteArray()
-            val req = byteArrayOf(0x05, 0x01, 0x00, 0x03, hostBytes.length.toByte()) +
+            val req = byteArrayOf(0x05, 0x01, 0x00, 0x03, hostBytes.size.toByte()) +
                 hostBytes + byteArrayOf(((port shr 8) and 0xFF).toByte(), (port and 0xFF).toByte())
             out.write(req)
             out.flush()
