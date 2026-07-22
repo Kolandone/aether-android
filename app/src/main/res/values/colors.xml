@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green">#1a7f37</color>
+    <color name="red">#cf222e</color>
+    <color name="accent">#0969da</color>
+    <color name="bg_primary">#ffffff</color>
+    <color name="bg_secondary">#f6f8fa</color>
+    <color name="text_primary">#1f2328</color>
+    <color name="text_secondary">#656d76</color>
+    <color name="text_muted">#8c959f</color>
+    <color name="border">#d0d7de</color>
+    <color name="ic_launcher_background">#ffffff</color>
+    <color name="bg_terminal">#010409</color>
+</resources>
