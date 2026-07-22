@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
+import com.aether.app.LogsActivity
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
